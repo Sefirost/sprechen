@@ -1,0 +1,110 @@
+<!DOCTYPE>
+<html ng-app="sprechen">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sprechen</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon" />
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body ng-controller="mainController as mainVm">
+        <div ng-cloak>
+            <section layout="row" flex style="height:100%;">
+                <md-sidenav
+                    class="md-sidenav-left"
+                    md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-md')"
+                    md-whiteframe="4">
+                    <md-toolbar class="md-theme-indigo">
+                        <h1 class="md-toolbar-tools">Sprechen</h1>
+                    </md-toolbar>
+                    <md-content class="side-content" >
+                        <ul ng-repeat="clase in mainVm.data.clases">
+                            <div class="clase"
+                                ng-click="clase.expanded = !clase.expanded">Clase {{$index + 1}}
+                                <md-icon ng-show="!clase.expanded">arrow_drop_down</md-icon>
+                                <md-icon ng-show="clase.expanded">arrow_drop_up</md-icon>
+                            </div>
+                            <div ng-show="clase.expanded">
+                                <li ng-repeat="(key, value) in clase" ng-show="key!=='numero' && key!=='expanded'"
+                                    class="capitalize"
+                                    ng-click="mainVm.go(clase.numero, key)">
+                                        {{key}}
+                                </li>
+                            </div>
+                        </ul>
+                    </md-content>
+                </md-sidenav>
+                <md-content flex>
+                    <md-toolbar class="md-hue-2">
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" ng-click="mainVm.toggleSidenav('left')" hide-gt-md>
+                                <md-icon class="menu-icon">menu</md-icon>
+                            </md-button>
+
+                            <h2 flex md-truncate>{{mainVm.title}}</h2>
+                        </div>
+                    </md-toolbar>
+                    <div layout="column" layout-align="top center">
+                        <form name="practiceForm" class="practice-form" ng-submit="mainVm.checkResult()">
+                            <div layout-gt-sm="row">                 
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input ng-model="mainVm.espanol" placeholder="Español" disabled>
+                                </md-input-container>
+                                <span style="margin: 26px">></span>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input id="aleman" ng-model="mainVm.aleman" placeholder="Aleman">
+                                    <div>
+                                        <md-button ng-repeat="especial in mainVm.especials"
+                                            class="md-fab md-mini md-secondary especials-icon" 
+                                            ng-click="mainVm.addEspecial(especial)">
+                                            {{especial}}
+                                        </md-button>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                             <div class="submit-button">
+                                <md-button 
+                                    class="md-raised md-primary"
+                                    type="submit" 
+                                    ng-disabled="mainVm.disableSubmit">Submit</md-button>
+                            </div>
+                        </form>
+                        <md-card class="result-card" ng-show="mainVm.showResult">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline" ng-show="!mainVm.result" style="color:red">Incorrecto!</span>
+                                    <span class="md-headline" ng-show="mainVm.result" style="color:green">Correcto</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p>
+                                    Respuesta: <strong>{{mainVm.alemanAnswer}}</strong>
+                                </p>
+                            </md-card-content>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button class="md-icon-button" ng-click="mainVm.speak()">
+                                    <md-icon>play_circle_outline</md-icon>
+                                </md-button>
+                                <md-button id="next" class="md-raised md-primary" ng-click="mainVm.ramdonItem()">Next</md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+
+                    <div flex></div>
+
+                </md-content>
+            </section>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+        <script src="app.js"></script>
+        <script src="controllers.js"></script>
+        <script src="data-service.js"></script>
+    </body>
+</html>

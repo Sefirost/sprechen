@@ -1,0 +1,65 @@
+md-sidenav {
+    background-color: rgb(244,67,54);
+}
+
+.side-content {
+    background-color: rgb(244,67,54);
+    color: white;
+}
+
+md-toolbar {
+    border-bottom: 1px solid white;
+}
+
+.side-content ul{
+    padding: 0px;
+}
+
+.side-content li{
+    padding: 6px 25px;
+    cursor: pointer;
+}
+
+.side-content li:hover, .clase:hover, .item-selected{
+    background-color: rgb(255,215,64);
+    color: black;
+}
+
+.side-content li{
+    padding: 6px 25px;
+    cursor: pointer;
+}
+
+.side-content md-icon{
+    color: white;
+}
+
+.clase {
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.capitalize {
+   text-transform: capitalize;
+}
+
+.submit-button {
+    text-align: right;
+}
+
+.result-card {
+    width: 80%;
+}
+
+.practice-form {
+    width: 80%;
+    margin: 25px 0 0 0
+}
+
+.especials-icon {
+    line-height: 25px !important;
+    width: 25px !important;
+    height: 25px !important;
+    text-transform: none;
+    min-height: 0 !important;
+}
