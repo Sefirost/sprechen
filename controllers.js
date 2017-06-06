@@ -56,6 +56,7 @@
             var i;
 
             mainVm.result = false;
+            mainVm.alemanAnswer =  mainVm.currentItem.aleman[0];
             for (i = 0; i < mainVm.currentItem.aleman.length; i++) {
                 if (mainVm.aleman === mainVm.currentItem.aleman[i]) {
                     mainVm.result = true;
