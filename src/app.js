@@ -12,5 +12,4 @@
             .primaryPalette('red')
             .accentPalette('amber');
     }
-    
 })();
