@@ -19,6 +19,7 @@ exports.ngModule = 'sprechen';
 exports.paths = {
   src: 'src',
   dist: 'dist',
+  publish: '.publish',
   tmp: '.tmp',
   e2e: 'e2e',
   tasks: 'gulp_tasks'

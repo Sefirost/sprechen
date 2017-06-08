@@ -16,6 +16,7 @@ gulp.task('test', gulp.series('scripts', 'karma:single-run'));
 gulp.task('test:auto', gulp.series('watch', 'karma:auto-run'));
 gulp.task('serve', gulp.series('inject', 'watch', 'browsersync'));
 gulp.task('serve:dist', gulp.series('default', 'browsersync:dist'));
+gulp.task('deploy', gulp.series('default', 'deploy'));
 gulp.task('default', gulp.series('clean', 'build'));
 gulp.task('watch', watch);
 
