@@ -1,10 +1,10 @@
-(function(){
+(function() {
     'use strict';
 
     angular
         .module('sprechen')
         .factory('DataService', dataService);
-    
+
     dataService.$inject = [];
 
     function dataService() {
@@ -41,7 +41,7 @@
                             {
                                 espanol:['Por favor'],
                                 aleman: ['Bitte']
-                            },
+                            }
                         ],
                         preguntas: [
                             {
@@ -74,7 +74,7 @@
                     }
                 ]
             };
-        
+
         service = {
             get: getData
         };

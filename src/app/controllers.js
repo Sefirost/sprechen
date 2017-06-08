@@ -1,13 +1,13 @@
-(function(){
+(function() {
     'use strict';
 
     angular
         .module('sprechen')
-        .controller('mainController', mainController);
+        .controller('MainController', MainController);
 
-    mainController.$inject = ['$timeout', '$window', '$mdSidenav', 'DataService'];
+    MainController.$inject = ['$timeout', '$window', '$mdSidenav', 'DataService'];
 
-    function mainController($timeout, $window, $mdSidenav, DataService) {
+    function MainController($timeout, $window, $mdSidenav, DataService) {
         var mainVm = this;
 
         mainVm.espanol = '';
@@ -38,18 +38,19 @@
 
         function addEspecial(especial) {
             mainVm.aleman += especial;
-            setFocus("aleman");
+            setFocus('aleman');
         }
 
         function ramdonItem() {
             var itemIndex = Math.floor((Math.random() * mainVm.currentPractice.length));
+
             mainVm.currentItem = mainVm.currentPractice[itemIndex];
             mainVm.espanol = mainVm.currentItem.espanol[0];
             mainVm.aleman = '';
             mainVm.result = '';
             mainVm.showResult = false;
             mainVm.disableSubmit = false;
-            setFocus("aleman");
+            setFocus('aleman');
         }
 
         function checkResult() {
@@ -65,29 +66,32 @@
             }
             mainVm.disableSubmit = true;
             speak();
-            setFocus("next");
+            setFocus('next');
             mainVm.showResult = true;
         }
 
         function toggleSidenav(side) {
-            $mdSidenav(side).toggle()
+            $mdSidenav(side).toggle();
         }
 
         function speak() {
-            if(window.speechSynthesis) {
-                var voices = window.speechSynthesis.getVoices();
-                var msg = new SpeechSynthesisUtterance();
+            var voices, msg;
+
+            if ($window.speechSynthesis) {
+                voices = $window.speechSynthesis.getVoices();
+                msg = new SpeechSynthesisUtterance();
                 msg.text = mainVm.alemanAnswer;
-                msg.voice = voices.filter(function(voice) { return voice.name == 'Google Deutsch'; })[0];
+                msg.voice = voices.filter(function(voice) { return voice.name === 'Google Deutsch'; })[0];
                 msg.lang = 'de-DE';
-                window.speechSynthesis.speak(msg);
+                $window.speechSynthesis.speak(msg);
             }
-        };
+        }
 
         function setFocus(id) {
-             $timeout(function() {
+            $timeout(function() {
                 var element = $window.document.getElementById(id);
-                if(element) { element.focus(); }
+
+                if (element) { element.focus(); }
             });
         }
     }
